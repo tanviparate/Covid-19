@@ -1,0 +1,360 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-5">CORONA VIRUS TRACKER</h1>
+    <p class="lead">
+      Stay updated with the COVID-19 cases around you!
+    </p>
+  </div>
+</div>
+
+<div class="align">
+    <h3><strong>INDIA SUMMARY</strong></h3>
+    <h6>
+        <span id="update">
+            <img src="../assets/icons/update.svg"/>
+        </span>
+        Last Updated Time : {{totalData?.lastupdatedtime}}
+    </h6>
+    <hr>
+</div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="card bg-light mb-3" style="max-width: 18rem;">
+            <div class="card-header">Total Confirmed
+                <span>
+                    <img src="../assets/icons/india.svg"/>
+                </span>
+            </div>
+            <div class="card-body">
+              <p class="card-text">{{totalData?.confirmed | number}}</p>
+            </div>
+          </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="card bg-light mb-3" style="max-width: 18rem;">
+            <div class="card-header">Total Active
+                <span>
+                    <img src="../assets/icons/patient.svg"/>
+                </span>
+            </div>
+            <div class="card-body">
+              <p class="card-text">{{totalData?.active | number}}</p>
+            </div>
+          </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="card bg-light mb-3" style="max-width: 18rem;">
+            <div class="card-header">Total Recovered
+                <span>
+                    <img src="../assets/icons/patient (1).svg"/>
+                </span>
+            </div>
+            <div class="card-body">
+              <p class="card-text">{{totalData?.recovered | number}}</p>
+            </div>
+          </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="card bg-light mb-3" style="max-width: 18rem;">
+            <div class="card-header">Total Deaths
+                <span>
+                    <img src="../assets/icons/death (1).svg"/>
+                </span>
+            </div>
+            <div class="card-body">
+              <p class="card-text">{{totalData?.deaths | number}}</p>
+            </div>
+          </div>
+      </div>
+      
+    </div>
+  
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <div class="card bg-light mb-3" style="max-width: 18rem;">
+                <div class="card-header">Newly Confirmed
+                    <span>
+                        <img src="../assets/icons/check.svg"/>
+                    </span>
+                </div>
+                <div class="card-body">
+                  <p class="card-text">{{totalData?.deltaconfirmed | number}}</p>
+                </div>
+              </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-3">
+            <div class="card bg-light mb-3" style="max-width: 18rem;">
+                <div class="card-header">Newly Recovered
+                    <span>
+                        <img src="../assets/icons/death (2).svg"/>
+                    </span>
+                </div>
+                <div class="card-body">
+                  <p class="card-text">{{totalData?.deltarecovered | number}}</p>
+                </div>
+              </div>
+          </div>
+          <div class=" col-xs-12 col-sm-6 col-md-3">
+            <div class="card bg-light mb-3" style="max-width: 18rem;">
+                <div class="card-header">Newly Deaths
+                    <span>
+                        <img src="../assets/icons/death.svg"/>
+                    </span>
+                </div>
+                <div class="card-body">
+                  <p class="card-text">{{totalData?.deltadeaths | number}}</p>
+                </div>
+              </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-3">
+            <div class="card bg-light mb-3" style="max-width: 18rem;">
+                <div class="card-header">Migrated to Other
+                    <span>
+                        <img src="../assets/icons/refugee.svg"/>
+                    </span>
+                </div>
+                <div class="card-body">
+                  <p class="card-text">{{totalData?.migratedother | number}}</p>
+                </div>
+              </div>
+          </div>
+    </div>
+
+    <div class="state">
+      <h3><strong>STATE WISE SUMMARY</strong></h3>
+  </div> 
+  <hr>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <h5>
+         <span class="badge badge-secondary">Choose a State</span>
+        </h5>  
+    <select name="selectedState" id="state" class="form-control" [(ngModel)]="selectedStateCode"  
+      (change)='onStateSelected()'>  
+      <option *ngFor="let data of allData" [value]="data.statecode">{{data.state}}</option>  
+    </select>  
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedStateCode!=undefined">  
+    <h5 class="state_name"><span>{{stateData?.state}} Summary</span></h5> 
+
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-3">
+          <div class="card bg-light mb-3" style="max-width: 18rem;">
+              <div class="card-header">Total Confirmed
+                  <span>
+                      <img src="../assets/icons/india.svg"/>
+                  </span>
+              </div>
+              <div class="card-body">
+                <p class="card-text">{{stateData?.confirmed | number}}</p>
+              </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+          <div class="card bg-light mb-3" style="max-width: 18rem;">
+              <div class="card-header">Total Active
+                  <span>
+                      <img src="../assets/icons/patient.svg"/>
+                  </span>
+              </div>
+              <div class="card-body">
+                <p class="card-text">{{stateData?.active | number}}</p>
+              </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+          <div class="card bg-light mb-3" style="max-width: 18rem;">
+              <div class="card-header">Total Recovered
+                  <span>
+                      <img src="../assets/icons/patient (1).svg"/>
+                  </span>
+              </div>
+              <div class="card-body">
+                <p class="card-text">{{stateData?.recovered | number}}</p>
+              </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+          <div class="card bg-light mb-3" style="max-width: 18rem;">
+              <div class="card-header">Total Deaths
+                  <span>
+                      <img src="../assets/icons/death (1).svg"/>
+                  </span>
+              </div>
+              <div class="card-body">
+                <p class="card-text">{{stateData?.deaths | number}}</p>
+              </div>
+            </div>
+        </div>
+        
+      </div>
+    
+      <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-3">
+              <div class="card bg-light mb-3" style="max-width: 18rem;">
+                  <div class="card-header">Newly Confirmed
+                      <span>
+                          <img src="../assets/icons/check.svg"/>
+                      </span>
+                  </div>
+                  <div class="card-body">
+                    <p class="card-text">{{stateData?.deltaconfirmed | number}}</p>
+                  </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+              <div class="card bg-light mb-3" style="max-width: 18rem;">
+                  <div class="card-header">Newly Recovered
+                      <span>
+                          <img src="../assets/icons/death (2).svg"/>
+                      </span>
+                  </div>
+                  <div class="card-body">
+                    <p class="card-text">{{stateData?.deltarecovered | number}}</p>
+                  </div>
+                </div>
+            </div>
+            <div class=" col-xs-12 col-sm-6 col-md-3">
+              <div class="card bg-light mb-3" style="max-width: 18rem;">
+                  <div class="card-header">Newly Deaths
+                      <span>
+                          <img src="../assets/icons/death.svg"/>
+                      </span>
+                  </div>
+                  <div class="card-body">
+                    <p class="card-text">{{stateData?.deltadeaths | number}}</p>
+                  </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+              <div class="card bg-light mb-3" style="max-width: 18rem;">
+                  <div class="card-header">Migrated to Other
+                      <span>
+                          <img src="../assets/icons/refugee.svg"/>
+                      </span>
+                  </div>
+                  <div class="card-body">
+                    <p class="card-text">{{stateData?.migratedother | number}}</p>
+                  </div>
+                </div>
+            </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <div *ngIf="selectedStateCode!=undefined">  
+            <h5 class="district">{{stateData?.state}} District wise Details</h5>  
+            <div>  
+              <table class="table table-sm">  
+                <thead>  
+                  <tr>  
+                    <th scope="col">District Name</th>  
+                    <th scope="col">Total Confirmed</th>  
+                  </tr>  
+                </thead>  
+                <tbody>  
+                  <tr *ngFor="let data of districtData?.districtData">  
+                    <td>{{data.name}}</td>  
+                    <td>{{data.confirmed | number}}</td>  
+                  </tr>  
+                </tbody>  
+              </table>  
+            </div>  
+          
+          </div>  
+        </div>  
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="state">
+    <h3><strong>SYMPTOMS</strong></h3>
+</div> 
+<hr>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-4">
+      <div class="card" style="width: 15rem;">
+        <img class="card-img-top" src="../assets/icons/fever.svg" alt="Fever">
+        <div class="card-body">
+          <p class="card-text">Fever</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-4">
+      <div class="card" style="width: 15rem;">
+        <img class="card-img-top" src="../assets/icons/cough.svg" alt="Cough and cold">
+        <div class="card-body">
+          <p class="card-text">Cough and Cold</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-4">
+      <div class="card" style="width: 15rem;">
+        <img class="card-img-top" src="../assets/icons/breathing.svg" alt="Breathlessness">
+        <div class="card-body">
+          <p class="card-text">Breathlessness</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="state">
+  <h3><strong>PRECAUTIONS</strong></h3>
+</div> 
+<hr>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-4">
+      <div class="card" style="width: 15rem;">
+        <img class="card-img-top" src="../assets/icons/patient (2).svg" alt="mask">
+        <div class="card-body">
+          <p class="card-text">Wear Mask</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-4">
+      <div class="card" style="width: 15rem;">
+        <img class="card-img-top" src="../assets/icons/washing-hands.svg" alt="hand-wash">
+        <div class="card-body">
+          <p class="card-text">Sanitizing Hands</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-4 ">
+      <div class="card " style="width: 15rem;">
+        <img class="card-img-top" src="../assets/icons/social-distancing.svg" alt="social-distance">
+        <div class="card-body">
+          <p class="card-text">Social Distancing</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="container">
+    <p >Made by Tanvi | All rights reserved.</p>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
